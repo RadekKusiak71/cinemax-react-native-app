@@ -29,14 +29,14 @@ describe('ButtonLink Component', () => {
     });
 
     it('renders correctly with the provided text', () => {
-        render(<ButtonLink href="/home" text="Click Me" />);
+        render(<ButtonLink href="/" text="Click Me" />);
 
         const buttonText = screen.getByText('Click Me');
         expect(buttonText).toBeTruthy();
     });
 
     it('navigates to the correct href when pressed', () => {
-        const testHref = '/profile/settings';
+        const testHref = '/';
         render(<ButtonLink href={testHref} text="Go to Settings" />);
 
         const button = screen.getByText('Go to Settings');
@@ -47,7 +47,7 @@ describe('ButtonLink Component', () => {
     });
 
     it('applies primary variant styles by default', () => {
-        render(<ButtonLink href="/test" text="Primary Button" />);
+        render(<ButtonLink href="/" text="Primary Button" />);
         const component = screen.getByText('Primary Button');
 
         const buttonText = component.parent;
@@ -58,7 +58,7 @@ describe('ButtonLink Component', () => {
     });
 
     it('applies secondary variant styles', () => {
-        render(<ButtonLink href="/test" text="Primary Button" variant="secondary" />);
+        render(<ButtonLink href="/" text="Primary Button" variant="secondary" />);
         const component = screen.getByText('Primary Button');
 
         const buttonText = component.parent;
