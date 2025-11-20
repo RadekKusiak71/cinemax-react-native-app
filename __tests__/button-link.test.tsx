@@ -1,8 +1,8 @@
-import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react-native';
-import ButtonLink from '@/components/button-link'
+import ButtonLink from '@/components/button-link';
+import { theme } from "@/constants/theme";
+import { fireEvent, render, screen } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
-import {theme} from "@/constants/theme";
+import React from 'react';
 
 jest.mock('expo-router', () => ({
     useRouter: jest.fn(),

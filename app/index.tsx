@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from "react-native";
-import {SafeAreaView} from 'react-native-safe-area-context';
 import ButtonLink from "@/components/button-link";
-import {theme} from "@/constants/theme";
+import { theme } from "@/constants/theme";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Index = () => {
     return (
@@ -14,10 +14,10 @@ const Index = () => {
 
             <View style={styles.welcomeButtonsContainer}>
                 <View style={styles.welcomeUpperButtonsContainer}>
-                    <ButtonLink text='Sign Up' href='/' style={styles.buttonFlex} />
-                    <ButtonLink text='Sign In' href='/' style={[styles.buttonFlex, styles.buttonSpacing]} />
+                    <ButtonLink text='Sign Up' href='/(auth)/register' style={styles.buttonFlex} />
+                    <ButtonLink text='Sign In' href='/(auth)/login' style={[styles.buttonFlex, styles.buttonSpacing]} />
                 </View>
-                <ButtonLink text='Continue as Guest' href='/' variant='secondary'/>
+                <ButtonLink text='Continue as Guest' href='/' variant='secondary' />
             </View>
         </SafeAreaView>
     )

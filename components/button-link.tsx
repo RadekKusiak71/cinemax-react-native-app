@@ -1,7 +1,7 @@
-import {StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle} from "react-native";
-import {Href, useRouter} from "expo-router";
+import { theme } from "@/constants/theme";
+import { Href, useRouter } from "expo-router";
 import React from "react";
-import {theme} from "@/constants/theme";
+import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from "react-native";
 
 type ButtonLinkProps = {
     text: string;
@@ -10,7 +10,7 @@ type ButtonLinkProps = {
     style?: StyleProp<ViewStyle>;
 }
 
-const ButtonLink: React.FC<ButtonLinkProps> = ({text, href, variant = 'primary', style}) => {
+const ButtonLink: React.FC<ButtonLinkProps> = ({ text, href, variant = 'primary', style }) => {
     const router = useRouter();
 
     const buttonStyle = variant === 'primary' ? styles.primaryButton : styles.secondaryButton;
