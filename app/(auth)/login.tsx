@@ -4,6 +4,8 @@ import FormInput from "@/components/form-input";
 import RedirectLink from "@/components/redirect-link";
 import TitleBlock from "@/components/title-block";
 import { theme } from "@/constants/theme";
+import { useAuth } from "@/context/auth-context";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,7 +22,9 @@ type LoginState = {
 }
 
 const LoginView = () => {
+    const router = useRouter();
     const { mutate, isPending } = useLogin();
+    const { login } = useAuth();
 
     const [state, setState] = useState<LoginState>({
         form: { email: '', password: '' },
@@ -37,9 +41,10 @@ const LoginView = () => {
 
     const onSubmit = () => {
         mutate(state.form, {
-            onSuccess: () => {
+            onSuccess: (data) => {
                 Alert.alert('Success', 'You have logged in successfully!');
-                // TODO: Implement onSuccess behavior, e.g., navigation
+                login(data.access, data.refresh);
+                router.replace('/(tabs)/movies-list');
             },
             onError: (error: any) => {
                 if (error.response?.data) {

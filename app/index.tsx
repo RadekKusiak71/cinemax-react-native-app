@@ -17,7 +17,7 @@ const Index = () => {
                     <ButtonLink text='Sign Up' href='/(auth)/register' style={styles.buttonFlex} />
                     <ButtonLink text='Sign In' href='/(auth)/login' style={[styles.buttonFlex, styles.buttonSpacing]} />
                 </View>
-                <ButtonLink text='Continue as Guest' href='/' variant='secondary' />
+                <ButtonLink text='Continue as Guest' href='/(tabs)/movies-list' variant='secondary' />
             </View>
         </SafeAreaView>
     )

@@ -11,10 +11,15 @@ const Layout = () => {
 
   return (
     <Stack>
+
       <Stack.Protected guard={!isAuthenticated}>
         <Stack.Screen name='index' options={{ headerShown: false }} />
         <Stack.Screen name='(auth)' options={{ headerShown: false }} />
       </Stack.Protected>
+
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="cinemas-select" options={{ headerShown: false }} />
+
     </Stack>
   )
 }

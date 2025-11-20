@@ -21,13 +21,15 @@ jest.mock('expo-router', () => ({
 describe('LoginView', () => {
     const mockMutate = jest.fn();
     const mockPush = jest.fn();
+    const mockReplace = jest.fn();
+    const mockLogin = jest.fn();
 
     beforeEach(() => {
         jest.clearAllMocks();
 
         (useRouter as jest.Mock).mockReturnValue({
             push: mockPush,
-            replace: jest.fn(),
+            replace: mockReplace,
         });
 
         (useLogin as jest.Mock).mockReturnValue({
@@ -37,6 +39,7 @@ describe('LoginView', () => {
 
         (useAuth as jest.Mock).mockReturnValue({
             userId: null,
+            login: mockLogin,
             isAuthenticated: false,
         });
 
@@ -80,6 +83,8 @@ describe('LoginView', () => {
         mutationOptions.onSuccess();
 
         expect(Alert.alert).toHaveBeenCalledWith('Success', 'You have logged in successfully!');
+        expect(mockLogin).toHaveBeenCalled();
+        expect(mockReplace).toHaveBeenCalledWith('/(tabs)/movies-list');
     });
 
     it('displays validation errors on input fields', async () => {
