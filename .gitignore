@@ -1,5 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/reactnative,webstorm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=reactnative,webstorm+all
+.env
 
 ### ReactNative ###
 # React Native Stack Base

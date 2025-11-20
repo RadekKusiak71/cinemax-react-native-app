@@ -1,10 +1,31 @@
+import { AuthProvider, useAuth } from "@/context/auth-context";
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query';
 import { Stack } from "expo-router";
 
-export default function RootLayout() {
+
+const Layout = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <Stack>
-      <Stack.Screen name='index' options={{ headerShown: false }} />
-      <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+      <Stack.Protected guard={!isAuthenticated}>
+        <Stack.Screen name='index' options={{ headerShown: false }} />
+        <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+      </Stack.Protected>
     </Stack>
+  )
+}
+
+export default function RootLayout() {
+  const queryClient = new QueryClient()
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Layout />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
