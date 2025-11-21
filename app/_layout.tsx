@@ -1,4 +1,5 @@
 import { AuthProvider, useAuth } from "@/context/auth-context";
+import { CinemaProvider } from "@/context/cinema-context";
 import {
   QueryClient,
   QueryClientProvider
@@ -18,7 +19,7 @@ const Layout = () => {
       </Stack.Protected>
 
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="cinemas-select" options={{ headerShown: false }} />
+      <Stack.Screen name="cinema-select" options={{ headerShown: false }} />
 
     </Stack>
   )
@@ -29,7 +30,9 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Layout />
+        <CinemaProvider>
+          <Layout />
+        </CinemaProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

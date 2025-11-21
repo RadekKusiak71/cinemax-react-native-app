@@ -1,10 +1,22 @@
 import { useAuth } from "@/context/auth-context";
+import { useCinema } from "@/context/cinema-context";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import React from "react";
+import { ActivityIndicator } from "react-native";
 
 const TabsLayout = () => {
+    const router = useRouter();
     const { isAuthenticated } = useAuth();
+    const { cinema, isLoading } = useCinema();
+
+    if (isLoading) {
+        return <ActivityIndicator size="large" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />;
+    }
+
+    if (!cinema) {
+        router.replace('/cinema-select');
+    }
 
     return (
         <Tabs initialRouteName="movies-list" screenOptions={{ headerShown: false }}>

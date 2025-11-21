@@ -1,12 +1,12 @@
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const CinemasSelectView = () => {
+const CinemaSelectView = () => {
     return (
         <SafeAreaView>
-            <Text>Cinemas Select View</Text>
+            <Text>Select a Cinema</Text>
         </SafeAreaView>
     );
 };
 
-export default CinemasSelectView;
+export default CinemaSelectView;
