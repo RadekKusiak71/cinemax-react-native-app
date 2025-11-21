@@ -1,11 +1,13 @@
-import { Text } from "react-native";
+import React from "react";
+import {Button} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import {useRouter} from "expo-router";
 
 const MovieListView = () => {
+    const router = useRouter();
     return (
         <SafeAreaView>
-            <Text>Movie List View</Text>
+            <Button title='select cinema' onPress={() => router.push("/cinema-select")} />
         </SafeAreaView>
     );
 };

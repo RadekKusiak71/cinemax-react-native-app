@@ -14,8 +14,8 @@ const TabsLayout = () => {
         return <ActivityIndicator size="large" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />;
     }
 
-    if (!cinema) {
-        router.replace('/cinema-select');
+    if (!cinema && !isLoading) {
+        router.replace("/cinema-select");
     }
 
     return (

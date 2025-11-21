@@ -74,13 +74,16 @@ describe('LoginView', () => {
         });
     });
 
-    it('shows an alert on successful login', () => {
+    it('shows an alert on successful login', async () => {
         render(<LoginView />);
         fireEvent.press(screen.getByText('Login'));
 
         const mutationOptions = mockMutate.mock.calls[0][1];
 
-        mutationOptions.onSuccess();
+        mutationOptions.onSuccess({
+            access: 'fake-access-token',
+            refresh: 'fake-refresh-token'
+        });
 
         expect(Alert.alert).toHaveBeenCalledWith('Success', 'You have logged in successfully!');
         expect(mockLogin).toHaveBeenCalled();

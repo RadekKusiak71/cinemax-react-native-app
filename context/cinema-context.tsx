@@ -13,7 +13,6 @@ type CinemaContextType = {
 const CinemaContext = createContext<CinemaContextType | undefined>(undefined);
 
 const CinemaProvider: React.FC<PropsWithChildren> = ({ children }) => {
-    const router = useRouter();
     const [cinemaId, setCinemaId] = useState<number | null>(null);
     const [isStorageLoaded, setIsStorageLoaded] = useState(false);
 
@@ -23,7 +22,6 @@ const CinemaProvider: React.FC<PropsWithChildren> = ({ children }) => {
                 const storedId = await SecureStore.getItemAsync('cinemaId');
                 if (storedId) setCinemaId(Number(storedId));
             } catch (e) {
-                router.push("/cinema-select");
                 console.error("Failed to load ID", e);
             } finally {
                 setIsStorageLoaded(true);
