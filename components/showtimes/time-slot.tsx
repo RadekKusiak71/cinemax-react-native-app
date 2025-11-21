@@ -8,6 +8,7 @@ interface TimeSlotProps {
 }
 
 const TimeSlot = ({ time, onPress }: TimeSlotProps) => {
+
     const { formattedTime, isPast } = useMemo(() => {
         const date = new Date(time);
         const now = new Date();

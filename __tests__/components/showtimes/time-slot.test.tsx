@@ -37,9 +37,6 @@ describe("TimeSlot Component", () => {
         const text = timeSlot.parent;
         const touchableOpacity = text.parent;
 
-        console.log(touchableOpacity.props.style);
-        console.log(text.props.style);
-
         expect(touchableOpacity.props.style.backgroundColor).toEqual(theme.colors.textMuted);
         expect(text.props.style[1].color).toEqual(theme.colors.textOnPrimary);
     });
