@@ -32,7 +32,8 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, IsLoading, IsError, 
                 accessibilityLabel={`${movie.title} poster`}
             />
 
-            <View style={styles.overview}>
+            <View style={styles.overviewContainer}>
+                <TitleBlock title={movie.title} subtitle={movie.release_date} />
 
                 {movie.genres && movie.genres.length > 0 && (
                     <View>
@@ -61,11 +62,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ movie, IsLoading, IsError, 
                         />
                     </View>
                 )}
-
-                <View style={{ gap: 12 }}>
-                    <TitleBlock title={movie.title} subtitle={movie.release_date} />
-                    <Text style={styles.movieDescription}>{movie.overview}</Text>
-                </View>
+                <Text style={styles.movieDescription}>{movie.overview}</Text>
             </View >
         </View >
     );
@@ -76,10 +73,10 @@ const styles = StyleSheet.create({
         height: 500,
         width: '100%',
     },
-    overview: {
+    overviewContainer: {
         flex: 1,
-        gap: 12,
-        padding: 16,
+        gap: 15,
+        padding: 18,
     },
     movieDescription: {
         fontSize: 16,
@@ -87,7 +84,6 @@ const styles = StyleSheet.create({
     },
     listContent: {
         gap: 8,
-        paddingRight: 16,
     },
 });
 
