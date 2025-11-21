@@ -7,14 +7,15 @@ type MovieCardProps = {
     imageUrl: string
     title: string
     releaseDate: string
+    onPress: () => void;
 };
 
 const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
-const MovieCard = ({ id, imageUrl, title, releaseDate }: MovieCardProps) => {
+const MovieCard = ({ id, imageUrl, title, releaseDate, onPress }: MovieCardProps) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity key={id} style={styles.container} onPress={onPress}>
             <Image
                 style={styles.image}
                 source={{ uri: imageUrl }}

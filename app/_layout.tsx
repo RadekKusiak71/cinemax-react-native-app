@@ -21,6 +21,15 @@ const Layout = () => {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="cinema-select" options={{ headerShown: false }} />
 
+      <Stack.Screen
+        name="(movie)/[movie_id]"
+        options={{
+          title: 'Movie Details',
+          headerShown: true,
+          headerBackTitle: 'Back'
+        }}
+      />
+
     </Stack>
   )
 }

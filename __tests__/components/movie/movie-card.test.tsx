@@ -9,6 +9,7 @@ describe("MovieCard Component", () => {
             imageUrl: "https://example.com/poster.jpg",
             title: "Inception",
             releaseDate: "2010-07-16",
+            onPress: jest.fn(),
         };
         render(<MovieCard {...mockProps} />);
 

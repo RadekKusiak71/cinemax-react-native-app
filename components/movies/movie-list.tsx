@@ -7,9 +7,10 @@ type MovieListProps = {
     data?: Movie[];
     onRefresh?: () => void;
     refreshing?: boolean;
+    onPressMovie: (id: number) => void;
 };
 
-const MovieList = ({ data, onRefresh, refreshing }: MovieListProps) => {
+const MovieList = ({ data, onRefresh, refreshing, onPressMovie }: MovieListProps) => {
     return (
         <FlatList
             data={data}
@@ -28,6 +29,7 @@ const MovieList = ({ data, onRefresh, refreshing }: MovieListProps) => {
                     imageUrl={item.poster_path}
                     title={item.title}
                     releaseDate={item.release_date}
+                    onPress={() => onPressMovie(item.id)}
                 />
             )}
             ListEmptyComponent={

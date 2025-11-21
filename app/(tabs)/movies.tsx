@@ -2,13 +2,14 @@ import { useListCinemaMovies, useListGenres } from "@/api/movies";
 import CinemaHeader from "@/components/cinema/cinema-header";
 import FilterList from "@/components/filter/filter-list";
 import MovieList from "@/components/movies/movie-list";
+import { ErrorScreen } from "@/components/ui/error-screen";
 import { LoadingScreen } from "@/components/ui/loading-screen";
 import { theme } from "@/constants/theme";
 import { useCinema } from "@/context/cinema-context";
 import { keepPreviousData } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 import React, { useCallback, useMemo } from "react";
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MovieView = () => {
@@ -45,16 +46,7 @@ const MovieView = () => {
 
     if (isInitialLoad) return <LoadingScreen message="Loading movies..." />;
 
-    if (isError) {
-        return (
-            <SafeAreaView style={styles.center}>
-                <Text style={styles.errorText}>Unable to load movies.</Text>
-                <TouchableOpacity onPress={handleChangeCinema} style={styles.retryButton}>
-                    <Text style={styles.retryButtonText}>Choose another cinema</Text>
-                </TouchableOpacity>
-            </SafeAreaView>
-        );
-    }
+    if (isError) return <ErrorScreen message="Failed to load movies." />;
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
@@ -80,6 +72,7 @@ const MovieView = () => {
                 data={movies}
                 onRefresh={refetch}
                 refreshing={isFetching}
+                onPressMovie={(id) => router.push(`/(movie)/${id}`)}
             />
         </SafeAreaView>
     );
@@ -88,7 +81,7 @@ const MovieView = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: theme.colors.background || '#fff',
+        backgroundColor: theme.colors.background,
         gap: 10
     },
     center: {
@@ -104,10 +97,10 @@ const styles = StyleSheet.create({
     },
     retryButton: {
         padding: 10,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: theme.colors.primary,
         borderRadius: 8,
     },
-    retryButtonText: { color: '#000' },
+    retryButtonText: { color: theme.colors.textOnPrimary },
     refetchingContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
