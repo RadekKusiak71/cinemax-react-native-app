@@ -1,6 +1,5 @@
 import { useRetrieveCinema } from "@/api/cinema";
 import { CinemaDetails } from "@/types/cinemas";
-import { useRouter } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
 import React, { createContext, PropsWithChildren, useEffect, useState } from "react";
 
@@ -32,6 +31,7 @@ const CinemaProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const { data: cinema, isLoading: isCinemaLoading } = useRetrieveCinema(cinemaId || undefined, {
         enabled: !!cinemaId && isStorageLoaded,
+        staleTime: 5 * 60 * 1000,
     });
 
     const selectCinema = async (id: number) => {

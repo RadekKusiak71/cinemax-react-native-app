@@ -1,3 +1,4 @@
+import { theme } from "@/constants/theme";
 import { useAuth } from "@/context/auth-context";
 import { useCinema } from "@/context/cinema-context";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -19,7 +20,7 @@ const TabsLayout = () => {
     }
 
     return (
-        <Tabs initialRouteName="movies-list" screenOptions={{ headerShown: false }}>
+        <Tabs initialRouteName="movies" screenOptions={{ headerShown: false, tabBarActiveTintColor: theme.colors.primary }}>
 
             <Tabs.Screen
                 name="settings"
@@ -33,7 +34,7 @@ const TabsLayout = () => {
             />
 
             <Tabs.Screen
-                name="movies-list"
+                name="movies"
                 options={{
                     headerShown: false,
                     tabBarLabel: 'Movies',

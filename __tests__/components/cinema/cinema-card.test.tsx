@@ -1,4 +1,4 @@
-import CinemaCard from "@/components/cinema-card";
+import CinemaCard from "@/components/cinema/cinema-card";
 import { theme } from "@/constants/theme";
 import { fireEvent, render, screen } from "@testing-library/react-native";
 

@@ -1,12 +1,13 @@
 import { useListCinemas } from "@/api/cinema";
-import CinemaCard from "@/components/cinema-card";
+import CinemaCard from "@/components/cinema/cinema-card";
 import TitleBlock from "@/components/title-block";
+import { ErrorScreen } from "@/components/ui/error-screen";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 import { theme } from "@/constants/theme";
 import { useCinema } from "@/context/cinema-context";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-    ActivityIndicator,
     FlatList,
     StyleSheet,
     Text
@@ -19,7 +20,7 @@ const CinemaSelectView = () => {
 
     const handleSetActiveCinema = async (id: number) => {
         await selectCinema(id);
-        router.push('/movies-list');
+        router.push('/movies');
     };
 
     const {
@@ -31,24 +32,9 @@ const CinemaSelectView = () => {
         staleTime: 5 * 60 * 1000,
     });
 
-    if (isLoading) {
-        return (
-            <SafeAreaView style={styles.center}>
-                <ActivityIndicator testID="activity-indicator" size="large" color="#0000ff" />
-                <Text>Loading Cinemas...</Text>
-            </SafeAreaView>
-        );
-    }
+    if (isLoading) return <LoadingScreen message="Loading cinemas..." />;
 
-    if (isError) {
-        return (
-            <SafeAreaView style={styles.center}>
-                <Text style={styles.errorText}>
-                    Error loading data: {error?.message || 'Unknown error'}
-                </Text>
-            </SafeAreaView>
-        );
-    }
+    if (isError) return <ErrorScreen message="Failed to load cinemas." />;
 
     return (
         <SafeAreaView style={styles.container}>

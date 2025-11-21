@@ -54,9 +54,9 @@ describe('CinemaSelectView', () => {
         });
 
         render(<CinemaSelectView />);
-
-        expect(screen.getByText('Loading Cinemas...')).toBeTruthy();
         expect(screen.getByTestId('activity-indicator')).toBeTruthy();
+        expect(screen.getByText('Loading cinemas...')).toBeTruthy();
+
     });
 
     it('should render error state', () => {
@@ -68,7 +68,7 @@ describe('CinemaSelectView', () => {
 
         render(<CinemaSelectView />);
 
-        expect(screen.getByText('Error loading data: Network failure')).toBeTruthy();
+        expect(screen.getByText('Failed to load cinemas.')).toBeTruthy();
     });
 
     it('should render list of cinemas', () => {
@@ -89,7 +89,7 @@ describe('CinemaSelectView', () => {
 
         await waitFor(() => {
             expect(mockSelectCinema).toHaveBeenCalledWith(1);
-            expect(mockPush).toHaveBeenCalledWith('/movies-list');
+            expect(mockPush).toHaveBeenCalledWith('/movies');
         });
     });
 });
