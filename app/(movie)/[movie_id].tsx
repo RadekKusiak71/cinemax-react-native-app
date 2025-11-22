@@ -1,8 +1,8 @@
 import { useRetrieveMovieDetails } from "@/api/movies";
 import { useListCinemaMovieShowtimes } from "@/api/showtimes";
 import MovieDetails from "@/components/movies/details/movie-details";
-import DateStrip from "@/components/showtimes/date-strip"; // 1. Import DateStrip
-import ShowtimesList from "@/components/showtimes/showtimes-list"; // 2. Import ShowtimesList
+import DateStrip from "@/components/showtimes/date-strip";
+import ShowtimesList from "@/components/showtimes/showtimes-list";
 import { theme } from "@/constants/theme";
 import { useCinema } from "@/context/cinema-context";
 import { keepPreviousData } from "@tanstack/react-query";
@@ -51,8 +51,7 @@ const MovieDetailView = () => {
     }, [refetch, refetchShowtimes]);
 
     const handleTimePress = (showtimeId: number) => {
-        console.log("Go to booking for:", showtimeId);
-        // router.push(`/booking/${showtimeId}`);
+        router.push(`/(movie)/(booking)/${showtimeId}/seat-selection`);
     };
 
     return (
@@ -67,7 +66,6 @@ const MovieDetailView = () => {
                 />
             }
         >
-            {/* Only render Details if data exists */}
             {movie && (
                 <MovieDetails
                     movie={movie}
