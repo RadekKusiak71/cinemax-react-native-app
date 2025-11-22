@@ -44,7 +44,7 @@ const LoginView = () => {
             onSuccess: (data) => {
                 Alert.alert('Success', 'You have logged in successfully!');
                 login(data.access, data.refresh);
-                router.replace('/(tabs)/movies-list');
+                router.replace('/(tabs)/movies');
             },
             onError: (error: any) => {
                 if (error.response?.data) {
